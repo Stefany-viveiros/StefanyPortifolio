@@ -158,9 +158,11 @@ function PinkBot() {
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [lightTheme, setLightTheme] = useState(false);
+  useEffect(() => { document.documentElement.dataset.theme = lightTheme ? "light" : "dark"; }, [lightTheme]);
   return <header className="site-header">
     <a className="brand" href="#inicio" aria-label="Stefany — início"><span className="brand-mark">S<span>.</span></span><span>STEFANY<span className="brand-muted">.DEV</span></span></a>
-    <button className="mobile-menu icon-button" onClick={() => setMenuOpen(!menuOpen)} aria-label="Alternar menu">{menuOpen ? <X /> : <Menu />}</button>
+    <div className="header-tools"><button className="theme-toggle icon-button" onClick={() => setLightTheme((value) => !value)} aria-label={lightTheme ? "Ativar tema escuro" : "Ativar tema claro"}><Moon size={17} /></button><button className="mobile-menu icon-button" onClick={() => setMenuOpen(!menuOpen)} aria-label="Alternar menu">{menuOpen ? <X /> : <Menu />}</button></div>
     <nav className={menuOpen ? "nav-links open" : "nav-links"} aria-label="Navegação principal">
       {navItems.map(([id, label]) => <a key={id} href={`#${id}`} onClick={() => setMenuOpen(false)}>{label}</a>)}
       <a href="#recrutadores" onClick={() => setMenuOpen(false)}>Recrutadores</a><a className="nav-cta" href="#contato">Vamos conversar <ArrowUpRight size={15} /></a>

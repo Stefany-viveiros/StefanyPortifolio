@@ -86,12 +86,12 @@ export const projects = [
 ];
 
 export const skillGroups = [
-  { title: "Linguagens", items: ["Python", "JavaScript", "PHP", "HTML5", "CSS3"] },
-  { title: "Frontend", items: ["React", "Vite", "Interfaces responsivas"] },
-  { title: "Backend & APIs", items: ["FastAPI", "APIs REST", "SQLAlchemy"] },
-  { title: "Dados", items: ["SQLite", "PostgreSQL", "Modelagem de dados"] },
-  { title: "Ferramentas", items: ["Git", "GitHub", "VS Code"] },
-  { title: "IA & automação", items: ["Integração com LLMs", "Prompt engineering", "Automação"] }
+  { title: "Linguagens", items: ["Python", "JavaScript", "PHP", "HTML5", "CSS3"], note: "Estudadas e utilizadas em projetos, conforme a tecnologia." },
+  { title: "Frontend", items: ["React", "Vite", "Interfaces responsivas"], note: "Aplicadas em interfaces e projetos web." },
+  { title: "Backend & APIs", items: ["FastAPI", "APIs REST", "SQLAlchemy"], note: "Aplicadas na construção de APIs e fluxos de dados." },
+  { title: "Dados", items: ["SQLite", "PostgreSQL", "Modelagem de dados"], note: "Tecnologias utilizadas em projetos; profundidade varia por ferramenta." },
+  { title: "Ferramentas", items: ["Git", "GitHub", "VS Code"], note: "Ferramentas usadas no fluxo de desenvolvimento." },
+  { title: "IA & automação", items: ["Integração com LLMs", "Prompt engineering", "Automação"], note: "Área de estudo e experimentação em aplicações; sem nível formal de proficiência declarado." }
 ];
 
 export const experience = [

@@ -1,9 +1,10 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowDown, ArrowRight, ArrowUpRight, Bot, Code2, Github, Linkedin,
-  Mail, Menu, MessageCircle, Moon, Send, Sparkles, X, Zap
+  Mail, Menu, MessageCircle, Moon, Send, Sparkles, X, Zap, Mic, Volume2, RotateCcw, Briefcase
 } from "lucide-react";
+import { sendPinkBotMessage } from "./services/chat.js";
 import { profile, projects, skillGroups, experience, principles } from "./data/portfolio.js";
 
 const navItems = [
@@ -11,24 +12,110 @@ const navItems = [
   ["trajetoria", "Trajetória"], ["contato", "Contato"]
 ];
 
-function PinkBot({ onNavigate }) {
+function PinkBot() {
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("");
-  const [reply, setReply] = useState("Oi! Eu sou o PinkBot. Posso apresentar os projetos, habilidades ou trajetória da Stefany.");
-  const suggestions = [
-    ["Projetos", "A Stefany tem projetos como JobFinder AI, BS Construtora, NeuroTask e Cinema Web App. Você pode explorar todos na seção de projetos."],
-    ["Habilidades", "Ela estuda e desenvolve com Python, JavaScript, React, FastAPI, APIs REST, bancos de dados e ferramentas de IA."],
-    ["Contato", "Você pode encontrar a Stefany pelo LinkedIn ou GitHub. Os links estão na seção de contato."]
-  ];
-  const send = (value = message) => {
-    const normalized = value.toLowerCase();
-    let answer = "Ainda estou aprendendo a responder isso. Experimente perguntar sobre projetos, habilidades ou contato.";
-    if (/projeto|jobfinder|neurotask|construtora|cinema/.test(normalized)) answer = suggestions[0][1];
-    else if (/habilidade|tecnologia|stack|linguagem/.test(normalized)) answer = suggestions[1][1];
-    else if (/contato|linkedin|github|email/.test(normalized)) answer = suggestions[2][1];
-    else if (/quem|sobre|stefany/.test(normalized)) answer = "Stefany é estudante de Engenharia da Computação e ADS, interessada em desenvolvimento de software, IA e automação.";
-    setReply(answer);
+  const [messages, setMessages] = useState([{ role: "assistant", content: "Oi! Eu sou o PinkBot. Posso apresentar a formação, os projetos e as tecnologias da Stefany." }]);
+  const [mode, setMode] = useState("knowledge");
+  const [thinking, setThinking] = useState(false);
+  const [voiceEnabled, setVoiceEnabled] = useState(false);
+  const [listening, setListening] = useState(false);
+  const [botState, setBotState] = useState("idle");
+  const [apiAvailable, setApiAvailable] = useState(true);
+  const recognitionRef = useRef(null);
+  const conversationRef = useRef(null);
+
+  useEffect(() => {
+    if (conversationRef.current) conversationRef.current.scrollTop = conversationRef.current.scrollHeight;
+  }, [messages, thinking]);
+
+  useEffect(() => {
+    if (!open) return undefined;
+    setBotState("greeting");
+    const timer = window.setTimeout(() => setBotState("idle"), 1800);
+    return () => window.clearTimeout(timer);
+  }, [open]);
+
+  const speak = (text) => {
+    if (!voiceEnabled || !("speechSynthesis" in window)) return;
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = "pt-BR";
+    const voices = window.speechSynthesis.getVoices();
+    const preferred = voices.find((voice) => voice.lang?.toLowerCase().startsWith("pt-br") && /female|feminina|luciana|fernanda/i.test(voice.name))
+      || voices.find((voice) => voice.lang?.toLowerCase().startsWith("pt-br"));
+    if (preferred) utterance.voice = preferred;
+    utterance.onstart = () => setBotState("talking");
+    utterance.onend = () => setBotState("happy");
+    window.speechSynthesis.speak(utterance);
+  };
+
+  const send = async (value = message) => {
+    const question = value.trim();
+    if (!question || thinking) return;
+    const nextMessages = [...messages, { role: "user", content: question }];
+    setMessages(nextMessages);
     setMessage("");
+    setThinking(true);
+    setBotState("thinking");
+    try {
+      const result = await sendPinkBotMessage(question, messages.slice(-10));
+      setMode(result.mode);
+      setApiAvailable(true);
+      const answer = result.reply;
+      setMessages((current) => [...current, { role: "assistant", content: answer }]);
+      speak(answer);
+      if (!voiceEnabled) setBotState("happy");
+    } catch {
+      setApiAvailable(false);
+      const q = question.toLowerCase();
+      let answer = "Não consegui acessar o servidor agora. Você ainda pode navegar pelo portfólio e consultar os repositórios da Stefany.";
+      if (/projeto|jobfinder|neurotask|construtora|cinema/.test(q)) answer = "A Stefany apresenta projetos como JobFinder AI, NeuroTask, BS Construtora, Explore Now e Cinema Web App. Os detalhes e códigos estão disponíveis nos repositórios do GitHub.";
+      else if (/habilidade|tecnologia|stack|linguagem/.test(q)) answer = "Entre as tecnologias que ela estuda e utiliza em projetos estão Python, JavaScript, PHP, React, FastAPI, APIs REST, SQLite, PostgreSQL e SQLAlchemy.";
+      else if (/contato|linkedin|github/.test(q)) answer = "Você pode encontrar a Stefany no GitHub e no LinkedIn, pelos links disponíveis na página.";
+      else if (/quem|sobre|stefany/.test(q)) answer = "Stefany é estudante de Engenharia da Computação e Análise e Desenvolvimento de Sistemas, interessada em software, IA e automação.";
+      setMode("knowledge");
+      setMessages((current) => [...current, { role: "assistant", content: answer }]);
+      setBotState("sad");
+      speak(answer);
+    } finally {
+      setThinking(false);
+    }
+  };
+
+  const startListening = () => {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+      setMessages((current) => [...current, { role: "assistant", content: "Este navegador não oferece reconhecimento de voz. Você pode digitar sua pergunta normalmente." }]);
+      return;
+    }
+    if (listening) {
+      recognitionRef.current?.stop();
+      setListening(false);
+      return;
+    }
+    const recognition = new SpeechRecognition();
+    recognition.lang = "pt-BR";
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
+    recognition.onresult = (event) => {
+      const transcript = event.results[0][0].transcript;
+      setListening(false);
+      setMessage(transcript);
+      send(transcript);
+    };
+    recognition.onerror = () => setListening(false);
+    recognition.onend = () => setListening(false);
+    recognitionRef.current = recognition;
+    recognition.start();
+    setListening(true);
+  };
+
+  const reset = () => {
+    window.speechSynthesis?.cancel?.();
+    recognitionRef.current?.stop?.();
+    setMessages([{ role: "assistant", content: "Conversa reiniciada! O que você gostaria de conhecer sobre a Stefany?" }]);
+    setBotState("greeting");
   };
 
   return (
@@ -37,21 +124,28 @@ function PinkBot({ onNavigate }) {
         {open && (
           <motion.div className="bot-panel" initial={{ opacity: 0, y: 18, scale: .96 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 18, scale: .96 }}>
             <div className="bot-panel-head">
-              <div className="bot-avatar small"><Bot size={19} /></div>
-              <div><strong>PinkBot</strong><span><i /> Assistente local demonstrativo</span></div>
-              <button className="icon-button" onClick={() => setOpen(false)} aria-label="Fechar PinkBot"><X size={18} /></button>
+              <div className={`pinkbot-avatar state-${botState}`} aria-hidden="true"><span className="pinkbot-eye" /><span className="pinkbot-eye" /><span className="pinkbot-mouth" /></div>
+              <div><strong>PinkBot</strong><span><i /> {apiAvailable ? (mode === "llm" ? "IA conectada" : "Base de conhecimento") : "Modo local de contingência"}</span></div>
+              <button className="icon-button" onClick={reset} aria-label="Reiniciar conversa"><RotateCcw size={16} /></button>
+              <button className="icon-button" onClick={() => { setOpen(false); window.speechSynthesis?.cancel?.(); setBotState("goodbye"); }} aria-label="Fechar PinkBot"><X size={18} /></button>
             </div>
-            <div className="bot-conversation">
-              <div className="bot-bubble">{reply}</div>
+            <div className="bot-conversation" ref={conversationRef} aria-live="polite">
+              {messages.map((item, index) => <div key={index} className={item.role === "user" ? "bot-bubble user-bubble" : "bot-bubble"}>{item.content}</div>)}
+              {thinking && <div className="bot-bubble thinking-bubble">PinkBot está pensando<span>...</span></div>}
               <div className="bot-suggestions">
-                {suggestions.map(([label, value]) => <button key={label} onClick={() => setReply(value)}>{label}</button>)}
+                {["Quem é a Stefany?", "Projetos", "Tecnologias", "Modo recrutador"].map((label) => <button key={label} onClick={() => label === "Modo recrutador" ? document.getElementById("recrutadores")?.scrollIntoView({ behavior: "smooth" }) : send(label)}>{label}</button>)}
               </div>
             </div>
-            <form className="bot-input" onSubmit={(event) => { event.preventDefault(); if (message.trim()) send(); }}>
+            <form className="bot-input" onSubmit={(event) => { event.preventDefault(); send(); }}>
               <input value={message} onChange={(event) => setMessage(event.target.value)} placeholder="Pergunte sobre a Stefany..." aria-label="Mensagem para PinkBot" />
-              <button aria-label="Enviar mensagem" type="submit"><Send size={17} /></button>
+              <button type="button" className={listening ? "voice-active" : ""} onClick={startListening} aria-label={listening ? "Parar reconhecimento de voz" : "Falar com PinkBot"}><Mic size={16} /></button>
+              <button aria-label="Enviar mensagem" type="submit" disabled={thinking}><Send size={17} /></button>
             </form>
-            <p className="bot-disclaimer">Versão local. Ainda não conectada a um modelo de IA.</p>
+            <div className="bot-controls">
+              <button onClick={() => setVoiceEnabled((value) => !value)} aria-pressed={voiceEnabled}><Volume2 size={14} /> Voz {voiceEnabled ? "ativada" : "desativada"}</button>
+              <span>{mode === "llm" ? "Resposta gerada por IA" : "Resposta baseada em conhecimento"}</span>
+            </div>
+            <p className="bot-disclaimer">{apiAvailable ? "A conversa usa a API do portfólio; sem chave configurada, responde pela base local." : "Servidor indisponível: respostas locais de contingência."} O microfone depende do suporte e da permissão do navegador.</p>
           </motion.div>
         )}
       </AnimatePresence>
@@ -69,7 +163,7 @@ function Header() {
     <button className="mobile-menu icon-button" onClick={() => setMenuOpen(!menuOpen)} aria-label="Alternar menu">{menuOpen ? <X /> : <Menu />}</button>
     <nav className={menuOpen ? "nav-links open" : "nav-links"} aria-label="Navegação principal">
       {navItems.map(([id, label]) => <a key={id} href={`#${id}`} onClick={() => setMenuOpen(false)}>{label}</a>)}
-      <a className="nav-cta" href="#contato">Vamos conversar <ArrowUpRight size={15} /></a>
+      <a href="#recrutadores" onClick={() => setMenuOpen(false)}>Recrutadores</a><a className="nav-cta" href="#contato">Vamos conversar <ArrowUpRight size={15} /></a>
     </nav>
   </header>;
 }
@@ -139,10 +233,22 @@ function Experience() {
   </section>;
 }
 
+function RecruiterMode() {
+  return <section className="section-wrap section-block recruiter-section" id="recrutadores">
+    <SectionHeading eyebrow="06 / RECRUITER MODE" title={<>Uma visão direta<br /><span className="gradient-text">para recrutadores.</span></>} text="Um resumo objetivo da formação, das tecnologias e dos projetos que representam minha trajetória atual." />
+    <div className="recruiter-grid">
+      <article className="recruiter-card recruiter-summary"><Briefcase size={22} /><span className="card-index">RESUMO PROFISSIONAL</span><h3>Formação em tecnologia, experiência operacional e iniciativa para construir soluções.</h3><p>Stefany combina estudos em Engenharia da Computação e ADS com vivência em processos, logística e produção. Seus projetos exploram desenvolvimento web, backend, automação e aplicações com IA.</p><a className="project-link" href={profile.links.linkedin} target="_blank" rel="noreferrer">Perfil profissional <ArrowUpRight size={16} /></a></article>
+      <article className="recruiter-card"><span className="card-index">FORMAÇÃO</span><h3>Em andamento</h3><p>Engenharia da Computação</p><p>Análise e Desenvolvimento de Sistemas</p><span className="card-index">ÁREAS DE INTERESSE</span><div className="skill-tags"><span>Desenvolvimento</span><span>GenAI</span><span>Automação</span><span>Dados</span></div></article>
+      <article className="recruiter-card"><span className="card-index">PROJETOS EM DESTAQUE</span><h3>JobFinder AI</h3><p>Automação de busca e organização de oportunidades, leitura de currículo e análise de compatibilidade.</p><a className="project-link" href="https://github.com/Stefany-viveiros/JobFinderAI" target="_blank" rel="noreferrer">Ver projeto <ArrowUpRight size={16} /></a><h3>BS Construtora</h3><p>Fluxo de orçamentos com frontend React, API FastAPI e persistência SQLite.</p><a className="project-link" href="https://github.com/Stefany-viveiros/BS-Construtora" target="_blank" rel="noreferrer">Ver projeto <ArrowUpRight size={16} /></a></article>
+    </div>
+    <div className="recruiter-actions"><a className="button-primary" href={profile.links.linkedin} target="_blank" rel="noreferrer"><Linkedin size={16} /> Conversar no LinkedIn</a><a className="button-ghost" href={profile.links.github} target="_blank" rel="noreferrer"><Github size={16} /> Analisar GitHub</a><span>Currículo PDF: será disponibilizado quando o arquivo final for adicionado.</span></div>
+  </section>;
+}
+
 function Contact() {
   return <section className="section-wrap contact-section" id="contato"><div className="contact-glow" /><span className="eyebrow">06 / CONTATO</span><h2>Vamos construir<br /><span className="gradient-text">algo interessante?</span></h2><p>Estou aberta a oportunidades de estágio e posições júnior, projetos e conversas sobre tecnologia, desenvolvimento e IA.</p><div className="contact-actions"><a className="button-primary" href={profile.links.linkedin} target="_blank" rel="noreferrer"><Linkedin size={17} /> Conectar no LinkedIn</a><a className="button-ghost" href={profile.links.github} target="_blank" rel="noreferrer"><Github size={17} /> Ver GitHub</a></div><div className="contact-foot"><span><span className="pulse-dot" /> DISPONÍVEL PARA NOVAS CONEXÕES</span><span>BRASIL · REMOTO / HÍBRIDO</span></div></section>;
 }
 
 export default function App() {
-  return <div className="app-shell"><a className="skip-link" href="#conteudo">Pular para o conteúdo</a><Header /><main id="conteudo"><Hero /><div className="section-divider" /><About /><Skills /><Projects /><Philosophy /><Experience /><Contact /></main><footer className="site-footer"><a className="brand" href="#inicio"><span className="brand-mark">S<span>.</span></span><span>STEFANY<span className="brand-muted">.DEV</span></span></a><span>Feito com curiosidade, código e um toque de rosa. <span className="pink">♥</span></span><span>© {new Date().getFullYear()} STEFANY BARBOZA</span></footer><PinkBot /><button className="back-top" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} aria-label="Voltar ao topo"><ArrowUpRight size={18} /></button></div>;
+  return <div className="app-shell"><a className="skip-link" href="#conteudo">Pular para o conteúdo</a><Header /><main id="conteudo"><Hero /><div className="section-divider" /><About /><Skills /><Projects /><Philosophy /><Experience /><RecruiterMode /><Contact /></main><footer className="site-footer"><a className="brand" href="#inicio"><span className="brand-mark">S<span>.</span></span><span>STEFANY<span className="brand-muted">.DEV</span></span></a><span>Feito com curiosidade, código e um toque de rosa. <span className="pink">♥</span></span><span>© {new Date().getFullYear()} STEFANY BARBOZA</span></footer><PinkBot /><button className="back-top" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} aria-label="Voltar ao topo"><ArrowUpRight size={18} /></button></div>;
 }

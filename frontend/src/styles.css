@@ -165,3 +165,10 @@ body:before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;bac
 @media(max-width:900px){.hero-character-stage{height:460px}.hero-pinkbot-free{height:390px;width:340px}}
 @media(max-width:680px){.hero-character-stage{height:470px;margin:0 -10px}.hero-pinkbot-free{width:320px;height:385px}.hero-character-label{top:10px}.hero-character-name{bottom:14px}.hero-character-stage .tag-code{left:0;top:80px}.hero-character-stage .tag-ai{right:0;top:175px}.hero-character-stage .tag-react{left:0;bottom:65px}.project-visual{min-height:230px}.project-preview{width:82%}}
 @media(prefers-reduced-motion:reduce){.hero-pinkbot-free,.hero-character-aura{animation:none!important}}
+
+
+/* Hero limpo: o PinkBot aparece apenas no launcher de conversa */
+.hero{grid-template-columns:minmax(0,1fr);min-height:650px;padding-top:100px;padding-bottom:110px}
+.hero-copy{max-width:900px}
+.hero-description{max-width:650px}
+@media(max-width:680px){.hero{min-height:unset;padding-top:76px;padding-bottom:100px}.hero-copy{max-width:100%}}

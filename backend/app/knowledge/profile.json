@@ -104,5 +104,8 @@
     "desenvolvimento júnior",
     "desenvolvimento de software",
     "IA e automação"
-  ]
+  ],
+  "concepts": {
+    "GenAI": "GenAI, ou IA generativa, é uma área da inteligência artificial que produz conteúdo novo — como texto, imagens, áudio ou código — a partir de padrões aprendidos e de instruções/contexto fornecidos pelo usuário."
+  }
 }

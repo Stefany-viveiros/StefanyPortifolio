@@ -213,7 +213,7 @@ function About() {
 
 function Skills() {
   return <section className="section-wrap section-block" id="habilidades"><SectionHeading eyebrow="02 / TECNOLOGIAS" title={<>Ferramentas para<br /><span className="gradient-text">tirar ideias do papel.</span></>} text="Tecnologias que venho estudando e aplicando em projetos. A profundidade de experiência varia conforme a ferramenta." />
-    <div className="skills-grid">{skillGroups.map((group, index) => <motion.article className="skill-card" key={group.title} initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * .06 }}><div className="skill-card-top"><span>0{index + 1}</span><Zap size={17} /></div><h3>{group.title}</h3><div className="skill-tags">{group.items.map(item => <span key={item}>{item}</span>)}</div></motion.article>)}</div>
+    <div className="skills-grid">{skillGroups.map((group, index) => <motion.article className="skill-card" key={group.title} initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * .06 }}><div className="skill-card-top"><span>0{index + 1}</span><Zap size={17} /></div><h3>{group.title}</h3><p className="skill-note">{group.note}</p><div className="skill-tags">{group.items.map(item => <span key={item}>{item}</span>)}</div></motion.article>)}</div>
   </section>;
 }
 
@@ -256,7 +256,19 @@ function RecruiterMode() {
 }
 
 function Contact() {
-  return <section className="section-wrap contact-section" id="contato"><div className="contact-glow" /><span className="eyebrow">06 / CONTATO</span><h2>Vamos construir<br /><span className="gradient-text">algo interessante?</span></h2><p>Estou aberta a oportunidades de estágio e posições júnior, projetos e conversas sobre tecnologia, desenvolvimento e IA.</p><div className="contact-actions"><a className="button-primary" href={profile.links.linkedin} target="_blank" rel="noreferrer"><Linkedin size={17} /> Conectar no LinkedIn</a><a className="button-ghost" href={profile.links.github} target="_blank" rel="noreferrer"><Github size={17} /> Ver GitHub</a></div><div className="contact-foot"><span><span className="pulse-dot" /> DISPONÍVEL PARA NOVAS CONEXÕES</span><span>BRASIL · REMOTO / HÍBRIDO</span></div></section>;
+  const email = import.meta.env.VITE_CONTACT_EMAIL || profile.email;
+  const [copied, setCopied] = useState(false);
+  const copyEmail = async () => {
+    if (!email || !navigator.clipboard?.writeText) return;
+    try {
+      await navigator.clipboard.writeText(email);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1800);
+    } catch {
+      setCopied(false);
+    }
+  };
+  return <section className="section-wrap contact-section" id="contato"><div className="contact-glow" /><span className="eyebrow">07 / CONTATO</span><h2>Vamos construir<br /><span className="gradient-text">algo interessante?</span></h2><p>Estou aberta a oportunidades de estágio e posições júnior, projetos e conversas sobre tecnologia, desenvolvimento e IA.</p><div className="contact-actions"><a className="button-primary" href={profile.links.linkedin} target="_blank" rel="noreferrer"><Linkedin size={17} /> Conectar no LinkedIn</a><a className="button-ghost" href={profile.links.github} target="_blank" rel="noreferrer"><Github size={17} /> Ver GitHub</a>{email && <button className="button-ghost" type="button" onClick={copyEmail}><Mail size={17} /> {copied ? "E-mail copiado" : "Copiar e-mail"}</button>}</div><div className="contact-foot"><span><span className="pulse-dot" /> DISPONÍVEL PARA NOVAS CONEXÕES</span><span>BRASIL · REMOTO / HÍBRIDO</span></div></section>;
 }
 
 export default function App() {

@@ -40,7 +40,7 @@ npm run dev
 
 Frontend: `http://localhost:5173`.
 
-## PinkBot
+- `VITE_CONTACT_EMAIL`: e-mail público opcional exibido no contato; deixe vazio se não quiser publicar um endereço.\n\n## PinkBot
 
 O PinkBot possui dois modos explícitos:
 

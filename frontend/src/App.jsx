@@ -193,10 +193,31 @@ function Hero() {
       <div className="hero-actions"><a className="button-primary" href="#projetos">Explorar projetos <ArrowUpRight size={17} /></a><a className="button-ghost" href="#sobre">Conhecer minha jornada <ArrowDown size={16} /></a></div>
       <div className="hero-socials"><a href={profile.links.github} target="_blank" rel="noreferrer"><Github size={17} /> GitHub</a><a href={profile.links.linkedin} target="_blank" rel="noreferrer"><Linkedin size={17} /> LinkedIn</a></div>
     </div>
+    <aside className="hero-showcase" aria-label="Resumo visual dos projetos e áreas de atuação">
+      <div className="showcase-orb showcase-orb-one" /><div className="showcase-orb showcase-orb-two" />
+      <div className="showcase-topline"><span><i /> PORTFÓLIO EM EVOLUÇÃO</span><span>STF / 2026</span></div>
+      <div className="showcase-code-card">
+        <div className="showcase-window-bar"><span><i /><i /><i /></span><small>stefany.dev / workspace</small><Code2 size={15} /></div>
+        <div className="showcase-code">
+          <p><span>01</span><b>const</b> foco = [</p>
+          <p><span>02</span><em>"desenvolvimento full stack"</em>,</p>
+          <p><span>03</span><em>"inteligência artificial"</em>,</p>
+          <p><span>04</span><em>"automação de processos"</em></p>
+          <p><span>05</span>];</p>
+          <div className="showcase-terminal"><span>➜</span> construindo soluções <i /></div>
+        </div>
+      </div>
+      <div className="showcase-focus-card">
+        <div className="showcase-focus-icon"><Sparkles size={17} /></div>
+        <div><span>EM DESTAQUE</span><strong>Ideias em construção</strong><p>Projetos reais, experimentação e evolução contínua.</p></div>
+        <ArrowUpRight size={17} />
+      </div>
+      <div className="showcase-tags"><span>REACT</span><span>PYTHON</span><span>FASTAPI</span><span>GENAI</span></div>
+      <div className="showcase-index">01 <span>—</span> 07 <i /> EXPLORAR</div>
+    </aside>
     <div className="hero-scroll">SCROLL PARA EXPLORAR <span /></div>
   </section>;
 }
-
 function About() {
   return <section className="section-wrap section-block" id="sobre">
     <SectionHeading eyebrow="01 / SOBRE MIM" title={<>Curiosidade que vira<br /><span className="gradient-text">construção.</span></>} text="Mais do que escrever código, gosto de entender o contexto e descobrir como a tecnologia pode ajudar." />

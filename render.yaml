@@ -12,8 +12,6 @@ services:
         value: production
       - key: CORS_ORIGINS
         value: https://stefanyportifolio.onrender.com
-      - key: OPENAI_API_KEY
-        sync: false
       - key: OPENAI_MODEL
         value: gpt-4o-mini
   - type: web

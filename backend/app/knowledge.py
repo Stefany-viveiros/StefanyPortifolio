@@ -36,6 +36,21 @@ def answer_from_knowledge(question: str) -> str:
         ]
         return "Formação acadêmica de Stefany:\n" + "\n".join(lines)
 
+    technology_terms = ["python", "javascript", "php", "react", "fastapi", "flask", "node.js", "express", "sql", "sqlite", "postgresql", "sqlalchemy", "openai api", "html", "css", "vite", "tmdb"]
+    if any(term in q for term in ("experiência", "experiencia", "domina", "conhece", "sabe trabalhar")) and any(term in q for term in technology_terms):
+        mentioned = [term for term in technology_terms if term in q]
+        skills = data["skills"]
+        all_skills = [skill for group in skills.values() for skill in group]
+        project_techs = [tech for project in data["projects"] for tech in project["technologies"]]
+        known = sorted({item for item in all_skills + project_techs if any(term in item.casefold() for term in mentioned)})
+        if known:
+            return (
+                f"O currículo lista {', '.join(known)} entre as competências técnicas e/ou tecnologias utilizadas nos projetos. "
+                "Ele não informa um nível formal de proficiência nem descreve, para essa tecnologia especificamente, uma experiência profissional em empresa. "
+                "Posso detalhar os projetos do currículo em que as tecnologias aparecem."
+            )
+        return "Não encontrei essa tecnologia entre as competências ou projetos descritos no currículo."
+
     if any(term in q for term in ("experiência", "experiencia", "trabalhou", "emprego", "carreira", "cronoanalista", "transze", "medical burs", "logística", "logistica", "expedição", "expedicao")):
         blocks = []
         for item in data["experience"]:

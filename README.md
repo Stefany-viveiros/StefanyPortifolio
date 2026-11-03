@@ -58,7 +58,7 @@ Variáveis do backend:
 - `OPENAI_MODEL`: padrão `gpt-4o-mini`.
 - `CORS_ORIGINS`: origens permitidas separadas por vírgula.
 
-Sem chave, o assistente continua funcionando pela base local. Se o servidor estiver indisponível, a interface informa que entrou em contingência local. Não apresenta o modo local como IA conectada.
+Sem chave, o assistente continua funcionando pela base de conhecimento. Se o servidor estiver indisponível, a interface informa que entrou em contingência local. Não apresenta o modo local como IA conectada. O histórico existe somente no estado da conversa no navegador e é enviado na requisição quando necessário; a API não grava conversas em banco de dados.
 
 ### Voz
 

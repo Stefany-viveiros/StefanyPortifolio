@@ -21,7 +21,10 @@ export const projects = [
     stack: ["React", "Python", "FastAPI", "PostgreSQL"],
     status: "Em evolução",
     url: "https://github.com/Stefany-viveiros/JobFinderAI",
-    featured: true
+    featured: true,
+    problem: "A busca por oportunidades de estágio e nível júnior pode exigir consultar diferentes fontes, comparar requisitos e acompanhar candidaturas manualmente.",
+    solution: "Centralizar oportunidades, importar o currículo e apoiar a análise de compatibilidade para organizar a busca. A automação de envio deve respeitar as configurações e aprovações definidas pela pessoa usuária.",
+    architecture: "Frontend React + Vite, API Python/FastAPI e PostgreSQL hospedado no Neon; aplicação publicada com Render. A integração com IA é mantida no backend."
   },
   {
     name: "NeuroTask",
@@ -39,6 +42,9 @@ export const projects = [
       "Site institucional com fluxo de solicitação de orçamento, API em FastAPI e persistência de dados com SQLite e SQLAlchemy.",
     stack: ["React", "Vite", "FastAPI", "SQLite"],
     status: "Projeto pessoal",
+    problem: "Organizar o recebimento de solicitações de orçamento em um fluxo digital.",
+    solution: "Site com formulário de orçamento que envia os dados para uma API e persiste as solicitações.",
+    architecture: "React + JavaScript + Vite no frontend; FastAPI no backend; SQLite e SQLAlchemy para persistência; endpoint REST para recebimento de orçamentos.",
     url: "https://github.com/Stefany-viveiros/BS-Construtora"
   },
   {

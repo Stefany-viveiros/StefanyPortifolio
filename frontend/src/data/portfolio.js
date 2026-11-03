@@ -3,7 +3,7 @@ export const profile = {
   role: "Desenvolvimento de Software & Inteligência Artificial",
   headline: "Transformo ideias e problemas reais em soluções digitais.",
   intro:
-    "Sou estudante de Engenharia da Computação e Análise e Desenvolvimento de Sistemas. Gosto de entender desafios, conectar tecnologia e construir aplicações que tenham utilidade de verdade.",
+    "Estou no 8º período de Engenharia da Computação e no 2º período de Análise e Desenvolvimento de Sistemas. Gosto de entender desafios, conectar tecnologia e construir aplicações que tenham utilidade de verdade.",
   location: "Brasil",
   email: "",
   links: {

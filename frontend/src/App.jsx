@@ -193,18 +193,6 @@ function Hero() {
       <div className="hero-actions"><a className="button-primary" href="#projetos">Explorar projetos <ArrowUpRight size={17} /></a><a className="button-ghost" href="#sobre">Conhecer minha jornada <ArrowDown size={16} /></a></div>
       <div className="hero-socials"><a href={profile.links.github} target="_blank" rel="noreferrer"><Github size={17} /> GitHub</a><a href={profile.links.linkedin} target="_blank" rel="noreferrer"><Linkedin size={17} /> LinkedIn</a></div>
     </div>
-    <div className="hero-art hero-character-stage" aria-label="PinkBot, assistente virtual do portfólio">
-      <div className="hero-orbit hero-orbit-a" /><div className="hero-orbit hero-orbit-b" />
-      <div className="hero-grid-glow" />
-      <div className="hero-character-aura" />
-      <div className="hero-character-label"><span className="pulse-dot" /> YOUR AI COMPANION <b>PK—01</b></div>
-      <PinkBotCharacter className="hero-pinkbot hero-pinkbot-free" state="idle" />
-      <div className="hero-character-name"><strong>PinkBot</strong><span>curiosa por natureza. feita para explorar.</span></div>
-      <span className="float-tag tag-code"><Code2 size={15} /> BUILDING IDEAS</span>
-      <span className="float-tag tag-ai"><Sparkles size={15} /> EXPLORING AI</span>
-      <span className="float-tag tag-react">{"{ }"} REACT / PYTHON</span>
-      <div className="hero-art-caption"><span className="pulse-dot" /> PINKBOT SYSTEM // ONLINE DEMO</div>
-    </div>
     <div className="hero-scroll">SCROLL PARA EXPLORAR <span /></div>
   </section>;
 }

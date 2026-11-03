@@ -17,7 +17,7 @@ def _items(values: list[str]) -> str:
 
 
 def answer_from_knowledge(question: str) -> str:
-    """Answer recruiter questions using only the curated, public CV knowledge."""
+    """Responde a perguntas de recrutadores usando apenas os dados públicos e revisados do currículo."""
     q = question.casefold()
     data = load_knowledge()
     profile = data["profile"]

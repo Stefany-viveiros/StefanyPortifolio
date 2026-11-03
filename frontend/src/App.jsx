@@ -5,6 +5,7 @@ import {
   Mail, Menu, MessageCircle, Moon, Send, Sparkles, X, Zap, Mic, Volume2, RotateCcw, Briefcase
 } from "lucide-react";
 import { sendPinkBotMessage } from "./services/chat.js";
+import PinkBotCharacter from "./components/PinkBotCharacter.jsx";
 import { profile, projects, skillGroups, experience, principles } from "./data/portfolio.js";
 
 const navItems = [
@@ -132,7 +133,7 @@ function PinkBot() {
         {open && (
           <motion.div className="bot-panel" initial={{ opacity: 0, y: 18, scale: .96 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 18, scale: .96 }}>
             <div className="bot-panel-head">
-              <div className={`pinkbot-avatar state-${botState}`} aria-hidden="true"><span className="pinkbot-eye" /><span className="pinkbot-eye" /><span className="pinkbot-mouth" /></div>
+              <PinkBotCharacter className="pinkbot-avatar" state={botState} />
               <div><strong>PinkBot</strong><span><i /> {apiAvailable === null ? "Assistente pronto" : apiAvailable ? (mode === "llm" ? "IA conectada" : "Base de conhecimento") : "Modo local de contingência"}</span></div>
               <button className="icon-button" onClick={reset} aria-label="Reiniciar conversa"><RotateCcw size={16} /></button>
               <button className="icon-button" onClick={() => { setBotState("goodbye"); window.speechSynthesis?.cancel?.(); recognitionRef.current?.stop?.(); setListening(false); window.setTimeout(() => setOpen(false), 550); }} aria-label="Fechar PinkBot"><X size={18} /></button>
@@ -158,7 +159,7 @@ function PinkBot() {
         )}
       </AnimatePresence>
       <button className="bot-launcher" onClick={() => setOpen(!open)} aria-label={open ? "Fechar assistente PinkBot" : "Abrir assistente PinkBot"}>
-        <span className="bot-launcher-face"><Bot size={25} /></span><span className="bot-launcher-label">Fale com PinkBot</span><span className="bot-online" />
+        <span className="bot-launcher-face"><PinkBotCharacter className="launcher-bot-art" state={botState} /></span><span className="bot-launcher-label">Fale com PinkBot</span><span className="bot-online" />
       </button>
     </div>
   );
@@ -192,10 +193,17 @@ function Hero() {
       <div className="hero-actions"><a className="button-primary" href="#projetos">Explorar projetos <ArrowUpRight size={17} /></a><a className="button-ghost" href="#sobre">Conhecer minha jornada <ArrowDown size={16} /></a></div>
       <div className="hero-socials"><a href={profile.links.github} target="_blank" rel="noreferrer"><Github size={17} /> GitHub</a><a href={profile.links.linkedin} target="_blank" rel="noreferrer"><Linkedin size={17} /> LinkedIn</a></div>
     </div>
-    <div className="hero-art" aria-label="Ilustração abstrata de um núcleo digital rosa">
-      <div className="orbit orbit-one" /><div className="orbit orbit-two" /><div className="orbit orbit-three" />
-      <div className="hero-core"><div className="core-glow" /><div className="core-face"><span className="core-eye" /><span className="core-eye" /><span className="core-smile" /></div><span className="core-spark">✦</span></div>
-      <span className="float-tag tag-code"><Code2 size={15} /> BUILDING IDEAS</span><span className="float-tag tag-ai"><Sparkles size={15} /> EXPLORING AI</span><span className="float-tag tag-react">{"{ }"} REACT / PYTHON</span>
+    <div className="hero-art hero-character-stage" aria-label="PinkBot, assistente virtual do portfólio">
+      <div className="hero-orbit hero-orbit-a" /><div className="hero-orbit hero-orbit-b" />
+      <div className="hero-grid-glow" />
+      <div className="hero-character-card">
+        <span className="character-card-label"><i /> PERSONAL AI COMPANION</span>
+        <PinkBotCharacter className="hero-pinkbot" state="idle" />
+        <div className="character-card-foot"><span>PK-01</span><strong>PinkBot <em>online</em></strong><span>✦</span></div>
+      </div>
+      <span className="float-tag tag-code"><Code2 size={15} /> BUILDING IDEAS</span>
+      <span className="float-tag tag-ai"><Sparkles size={15} /> EXPLORING AI</span>
+      <span className="float-tag tag-react">{"{ }"} REACT / PYTHON</span>
       <div className="hero-art-caption"><span className="pulse-dot" /> PINKBOT SYSTEM // ONLINE DEMO</div>
     </div>
     <div className="hero-scroll">SCROLL PARA EXPLORAR <span /></div>

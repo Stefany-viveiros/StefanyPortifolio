@@ -11,10 +11,10 @@ describe("StefanyPortifolio", () => {
     expect(screen.getByRole("heading", { name: /para recrutadores/i })).toBeInTheDocument();
   });
 
-  it("opens PinkBot with the knowledge-base status", () => {
+  it("opens PinkBot with an honest initial status", () => {
     render(<App />);
     fireEvent.click(screen.getByRole("button", { name: /abrir assistente pinkbot/i }));
-    expect(screen.getByText(/base de conhecimento/i)).toBeInTheDocument();
+    expect(screen.getByText(/assistente pronto/i)).toBeInTheDocument();
     expect(screen.getByRole("textbox", { name: /mensagem para pinkbot/i })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /falar com pinkbot/i })).toBeInTheDocument();
   });

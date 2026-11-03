@@ -8,12 +8,26 @@ describe("StefanyPortifolio", () => {
     expect(screen.getByRole("heading", { name: /ideias ganham/i })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /curiosidade que vira/i })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /aprendizado em/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /para recrutadores/i })).toBeInTheDocument();
   });
 
-  it("opens PinkBot and shows its local demo notice", () => {
+  it("opens PinkBot with the knowledge-base status", () => {
     render(<App />);
     fireEvent.click(screen.getByRole("button", { name: /abrir assistente pinkbot/i }));
-    expect(screen.getByText(/assistente local demonstrativo/i)).toBeInTheDocument();
-    expect(screen.getByText(/ainda não conectada a um modelo de ia/i)).toBeInTheDocument();
+    expect(screen.getByText(/base de conhecimento/i)).toBeInTheDocument();
+    expect(screen.getByRole("textbox", { name: /mensagem para pinkbot/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /falar com pinkbot/i })).toBeInTheDocument();
+  });
+
+  it("exposes the recruiter mode and social links", () => {
+    render(<App />);
+    expect(screen.getByText(/resumo profissional/i)).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /perfil profissional/i })).toHaveAttribute("href", "https://linkedin.com/in/stefanybarboza-dev");
+  });
+
+  it("toggles the theme", () => {
+    render(<App />);
+    fireEvent.click(screen.getByRole("button", { name: /ativar tema claro/i }));
+    expect(document.documentElement.dataset.theme).toBe("light");
   });
 });

@@ -1,6 +1,12 @@
 import React, { useId } from "react";
 
 export default function PinkBotCharacter({ className = "", state = "idle" }) {
+  const instanceId = useId().replace(/:/g, "");
+  const shellId = `pb-shell-${instanceId}`;
+  const sideId = `pb-side-${instanceId}`;
+  const screenId = `pb-screen-${instanceId}`;
+  const glowId = `pb-glow-${instanceId}`;
+  const shadowId = `pb-shadow-${instanceId}`;
   return (
     <svg className={`pinkbot-character ${className} state-${state}`} viewBox="0 0 300 340" role="img" aria-label="PinkBot, robô assistente rosa">
       <defs>

@@ -1,111 +1,134 @@
 {
   "profile": {
-    "name": "Stefany Barboza",
-    "education": [
-      "Engenharia da Computação (em andamento)",
-      "Análise e Desenvolvimento de Sistemas (em andamento)"
-    ],
-    "interests": [
-      "desenvolvimento de software",
-      "inteligência artificial",
-      "GenAI",
-      "automação",
-      "dados"
-    ],
+    "name": "Stefany Viveiros Barboza",
+    "professional_title": "Desenvolvimento Full Stack | IA Generativa",
+    "location": "São Paulo - SP",
+    "objective": "Oportunidade de estágio ou Desenvolvedora Júnior em Tecnologia, com foco em Desenvolvimento de Software e Full Stack.",
+    "interests": ["desenvolvimento de software", "Full Stack", "Inteligência Artificial Generativa", "automação", "dados"],
     "links": {
       "github": "https://github.com/Stefany-viveiros",
       "linkedin": "https://linkedin.com/in/stefanybarboza-dev"
     },
-    "email": null
+    "email": null,
+    "phone": null
   },
+  "education": [
+    {
+      "course": "Engenharia da Computação",
+      "institution": "FAM",
+      "period": "2025–2027",
+      "status": "Em andamento"
+    },
+    {
+      "course": "Análise e Desenvolvimento de Sistemas",
+      "institution": "Cruzeiro do Sul",
+      "period": "2026–2027",
+      "status": "Em andamento"
+    },
+    {
+      "course": "Engenharia de Alimentos",
+      "institution": "UTFPR",
+      "status": "Curso trancado após o 6º semestre"
+    }
+  ],
   "skills": {
-    "languages": [
-      "Python",
-      "JavaScript",
-      "PHP"
-    ],
-    "frontend": [
-      "React",
-      "HTML5",
-      "CSS3",
-      "Vite"
-    ],
-    "backend": [
-      "FastAPI",
-      "APIs REST"
-    ],
-    "databases": [
-      "SQLite",
-      "PostgreSQL",
-      "SQLAlchemy"
-    ],
-    "tools": [
-      "Git",
-      "GitHub",
-      "VS Code"
-    ],
-    "ai": [
-      "integração com modelos de linguagem em projetos",
-      "engenharia de prompts",
-      "automação"
-    ]
+    "frontend": ["HTML5", "CSS3", "JavaScript", "React", "Vite"],
+    "backend": ["Python", "FastAPI", "Flask", "Node.js", "Express"],
+    "databases": ["SQL", "SQLite", "PostgreSQL", "SQLAlchemy"],
+    "apis_and_ai": ["APIs REST", "OpenAI API", "Inteligência Artificial Generativa"],
+    "tools": ["Git", "GitHub", "VS Code", "Excel Avançado"]
   },
   "projects": [
     {
-      "name": "JobFinder AI",
-      "url": "https://github.com/Stefany-viveiros/JobFinderAI",
-      "description": "Plataforma em evolução para apoiar a busca por oportunidades de estágio e posições júnior, com importação e leitura de currículo, organização de vagas e análise de compatibilidade. Frontend React, backend FastAPI e PostgreSQL; deploy realizado com Render e Neon."
+      "name": "BS Construtora",
+      "url": "https://github.com/Stefany-viveiros/BS-Construtora",
+      "technologies": ["React", "FastAPI", "Python", "APIs REST"],
+      "description": "Plataforma Full Stack para empresa de construção civil, com frontend em React e backend em FastAPI. Inclui API para solicitações de orçamento, filtros de projetos, slider antes/depois, formulários e interface responsiva.",
+      "planned_evolution": "Agentes de IA e chatbots para automatizar o atendimento."
     },
     {
       "name": "NeuroTask",
       "url": "https://github.com/Stefany-viveiros/neurotask",
-      "description": "Projeto relacionado à organização de tarefas e produtividade. Consulte o repositório para detalhes confirmados."
+      "technologies": ["JavaScript", "Node.js", "Express", "OpenAI API"],
+      "description": "Aplicação de produtividade com integração entre frontend, backend e IA Generativa. Utiliza OpenAI API para análise e classificação de tarefas, gerenciamento de atividades, sistema de XP, dashboard, insights gerados por IA e chat."
     },
     {
-      "name": "BS Construtora",
-      "url": "https://github.com/Stefany-viveiros/BS-Construtora",
-      "description": "Sistema web com React, Vite, FastAPI, SQLite e SQLAlchemy, incluindo fluxo de solicitação de orçamentos e persistência de dados."
-    },
-    {
-      "name": "Explore Now",
-      "url": "https://github.com/Stefany-viveiros/explore-now",
-      "description": "Projeto web de exploração e descoberta. Consulte o repositório para funcionalidades detalhadas."
-    },
-    {
-      "name": "Cinema Web App",
+      "name": "Cinema Inteligente",
       "url": "https://github.com/Stefany-viveiros/cinema-web-app",
-      "description": "Aplicação de cinema com recursos de filmes, seleção de assentos, ingressos e bomboniere."
+      "technologies": ["JavaScript", "API REST", "TMDB"],
+      "description": "Aplicação de cinema com integração à API do TMDB, catálogo de filmes, destaques, banner dinâmico, seleção de assentos, carrinho de bomboniere e simulação de compra de ingressos.",
+      "planned_evolution": "Bomboniere integrada ao assento, QR Code por poltrona, pagamento, acompanhamento do pedido, entrega na sala e painel operacional."
     },
     {
-      "name": "ONG Acolhe+",
-      "url": "https://github.com/Stefany-viveiros/ong-acolhe-plus",
-      "description": "Projeto acadêmico de solução digital para o contexto de uma organização social."
+      "name": "ExploreNow",
+      "url": "https://github.com/Stefany-viveiros/explore-now",
+      "technologies": ["HTML", "CSS", "JavaScript", "JSON"],
+      "description": "Plataforma de descoberta de destinos e pacotes de viagem, com busca, filtros por categoria, preço e promoções, cards dinâmicos, carrossel de imagens e modal com detalhes dos pacotes."
     },
     {
       "name": "SENAI Alunos",
       "url": "https://github.com/Stefany-viveiros/projeto-senai-alunos",
-      "description": "Projeto acadêmico desenvolvido no contexto de atividades do SENAI."
+      "technologies": ["Python", "Flask", "SQLAlchemy", "SQLite", "PostgreSQL"],
+      "description": "Sistema Full Stack para gerenciamento de alunos e identificação digital. Inclui cadastro, autenticação, sessões, hash de senhas, upload de imagens, geração de QR Code e integração com banco de dados."
     }
   ],
   "experience": [
     {
-      "role": "Cronoanalista",
       "company": "TransZE",
-      "period": "Dez/2018 a Ago/2019",
-      "description": "Experiência com análise de processos e tempos."
+      "role": "Cronoanalista",
+      "location": "São Paulo - SP",
+      "period": "2018–2019",
+      "activities": [
+        "Análise de processos operacionais e levantamento de tempos de execução.",
+        "Acompanhamento de indicadores de produtividade e análise de dados com Excel.",
+        "Identificação de oportunidades de melhoria nos processos.",
+        "Interface entre diferentes setores para acompanhamento de atividades e resultados."
+      ]
     },
     {
-      "role": "Logística e produção",
-      "description": "Vivência com estoque, expedição, acompanhamento de produção, Excel e rotinas relacionadas ao PCP."
+      "company": "Medical Burs",
+      "role": "Assistente Administrativo Logístico / Expedição (efetivada)",
+      "initial_role": "Estagiária Administrativa de Logística",
+      "location": "Cotia - SP",
+      "period": "2017–2018",
+      "activities": [
+        "Controle de estoque, separação de pedidos, elaboração de planilhas e solicitação de ordens de produção.",
+        "Contato com transportadoras e acompanhamento de processos produtivos, incluindo blistagem e usinagem.",
+        "Acompanhamento da relação entre demanda, disponibilidade e movimentação de materiais.",
+        "Ampliação das responsabilidades na expedição e no acompanhamento das equipes de expedição e embalagem.",
+        "Desenvolvimento de comunicação, negociação, resolução de conflitos e gestão de pessoas."
+      ]
     }
   ],
-  "professional_goals": [
-    "estágio em tecnologia",
-    "desenvolvimento júnior",
-    "desenvolvimento de software",
-    "IA e automação"
+  "courses": {
+    "completed": [
+      "Programação Full Stack — SENAI",
+      "Desenvolvimento Multiplataforma Web/Mobile — SENAI",
+      "Desenvolvimento em JavaScript — SENAI",
+      "Desenvolvimento em Python — SENAI",
+      "Desenvolvimento em PHP — SENAI",
+      "Excel Avançado — SENAI",
+      "Capacita+: Construa com o Gemini — Google Cloud (2026)"
+    ],
+    "in_progress": [
+      "Desenvolvimento Back-end em Java — ADA Tech",
+      "AWS Academy Cloud Foundations — Santander",
+      "AWS Academy Generative AI Foundations — Treina Brasil",
+      "Especialista em Inteligência Artificial — Alura",
+      "GenAI & Dados — DIO"
+    ]
+  },
+  "languages": [
+    {
+      "language": "Português",
+      "level": "Nativo"
+    },
+    {
+      "language": "Inglês",
+      "level": "Em desenvolvimento",
+      "learning": ["Santander Fala Mundo 2026", "MEC Idiomas"]
+    }
   ],
-  "concepts": {
-    "GenAI": "GenAI, ou inteligência artificial generativa, é uma área da IA que produz conteúdo novo — como texto, imagens, áudio ou código — a partir de padrões aprendidos e de instruções/contexto fornecidos pelo usuário."
-  }
+  "professional_goals": ["Estágio em tecnologia", "Desenvolvedora Júnior"],
+  "privacy": "O currículo original, telefone e e-mail pessoal não são disponibilizados pela API pública do portfólio. Para contato, use os links profissionais públicos."
 }

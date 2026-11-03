@@ -35,3 +35,10 @@ def test_project_question_uses_known_projects(monkeypatch):
     response = client.post("/api/chat", json={"message": "Como funciona o JobFinder AI?"})
     assert response.status_code == 200
     assert "JobFinder AI" in response.json()["reply"]
+
+
+def test_genai_question_has_a_grounded_definition(monkeypatch):
+    monkeypatch.delenv("OPENAI_API_KEY", raising=False)
+    response = client.post("/api/chat", json={"message": "O que é GenAI?"})
+    assert response.status_code == 200
+    assert "inteligência artificial generativa" in response.json()["reply"]

@@ -49,7 +49,7 @@ O PinkBot possui dois modos explícitos:
 
 Variáveis do backend:
 
-- `OPENAI_API_KEY`: segredo opcional, configurado somente no servidor.
+- `OPENAI_API_KEY`: segredo opcional, configurado somente no servidor. No Render, adicione manualmente em Environment no serviço da API se decidir ativar respostas com LLM; não é necessário para publicar a versão baseada em conhecimento.
 - `OPENAI_BASE_URL`: padrão `https://api.openai.com/v1`.
 - `OPENAI_MODEL`: padrão `gpt-4o-mini`.
 - `CORS_ORIGINS`: origens permitidas separadas por vírgula.

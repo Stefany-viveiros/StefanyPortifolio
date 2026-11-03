@@ -40,7 +40,11 @@ npm run dev
 
 Frontend: `http://localhost:5173`.
 
-- `VITE_CONTACT_EMAIL`: e-mail público opcional exibido no contato; deixe vazio se não quiser publicar um endereço.\n\n## PinkBot
+- `VITE_CONTACT_EMAIL`: e-mail público opcional exibido no contato; deixe vazio se não quiser publicar um endereço.
+
+- `VITE_API_URL`: URL pública da API; localmente, `http://localhost:8000`.
+
+## PinkBot
 
 O PinkBot possui dois modos explícitos:
 

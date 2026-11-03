@@ -19,6 +19,7 @@ function PinkBot() {
   const [mode, setMode] = useState("knowledge");
   const [thinking, setThinking] = useState(false);
   const [voiceEnabled, setVoiceEnabled] = useState(false);
+  const [volume, setVolume] = useState(0.85);
   const [listening, setListening] = useState(false);
   const [botState, setBotState] = useState("idle");
   const [apiAvailable, setApiAvailable] = useState(true);
@@ -41,6 +42,7 @@ function PinkBot() {
     window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = "pt-BR";
+    utterance.volume = volume;
     const voices = window.speechSynthesis.getVoices();
     const preferred = voices.find((voice) => voice.lang?.toLowerCase().startsWith("pt-br") && /female|feminina|luciana|fernanda/i.test(voice.name))
       || voices.find((voice) => voice.lang?.toLowerCase().startsWith("pt-br"));
@@ -50,6 +52,12 @@ function PinkBot() {
     window.speechSynthesis.speak(utterance);
   };
 
+  useEffect(() => {
+    if (!open || thinking) return undefined;
+    const timer = window.setTimeout(() => setBotState("sleeping"), 45000);
+    return () => window.clearTimeout(timer);
+  }, [open, messages, thinking]);
+
   const send = async (value = message) => {
     const question = value.trim();
     if (!question || thinking) return;
@@ -57,7 +65,7 @@ function PinkBot() {
     setMessages(nextMessages);
     setMessage("");
     setThinking(true);
-    setBotState("thinking");
+    setBotState(/[!?]/.test(question) ? "surprised" : "thinking");
     try {
       const result = await sendPinkBotMessage(question, messages.slice(-10));
       setMode(result.mode);

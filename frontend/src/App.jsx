@@ -135,7 +135,7 @@ function PinkBot() {
               <div className={`pinkbot-avatar state-${botState}`} aria-hidden="true"><span className="pinkbot-eye" /><span className="pinkbot-eye" /><span className="pinkbot-mouth" /></div>
               <div><strong>PinkBot</strong><span><i /> {apiAvailable === null ? "Assistente pronto" : apiAvailable ? (mode === "llm" ? "IA conectada" : "Base de conhecimento") : "Modo local de contingência"}</span></div>
               <button className="icon-button" onClick={reset} aria-label="Reiniciar conversa"><RotateCcw size={16} /></button>
-              <button className="icon-button" onClick={() => { setBotState("goodbye"); window.speechSynthesis?.cancel?.(); window.setTimeout(() => setOpen(false), 550); }} aria-label="Fechar PinkBot"><X size={18} /></button>
+              <button className="icon-button" onClick={() => { setBotState("goodbye"); window.speechSynthesis?.cancel?.(); recognitionRef.current?.stop?.(); setListening(false); window.setTimeout(() => setOpen(false), 550); }} aria-label="Fechar PinkBot"><X size={18} /></button>
             </div>
             <div className="bot-conversation" ref={conversationRef} aria-live="polite">
               {messages.map((item, index) => <div key={index} className={item.role === "user" ? "bot-bubble user-bubble" : "bot-bubble"}>{item.content}</div>)}

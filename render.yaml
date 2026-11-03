@@ -1,6 +1,7 @@
 services:
   - type: web
     name: stefany-exe-api
+    autoDeployTrigger: checksPass
     runtime: python
     plan: free
     rootDir: backend
@@ -16,6 +17,7 @@ services:
         value: gpt-4o-mini
   - type: web
     name: stefanyportifolio
+    autoDeployTrigger: checksPass
     runtime: static
     buildCommand: cd frontend && npm install && npm run build
     staticPublishPath: frontend/dist

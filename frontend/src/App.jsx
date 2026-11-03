@@ -22,7 +22,7 @@ function PinkBot() {
   const [volume, setVolume] = useState(0.85);
   const [listening, setListening] = useState(false);
   const [botState, setBotState] = useState("idle");
-  const [apiAvailable, setApiAvailable] = useState(true);
+  const [apiAvailable, setApiAvailable] = useState(null);
   const recognitionRef = useRef(null);
   const conversationRef = useRef(null);
 
@@ -133,7 +133,7 @@ function PinkBot() {
           <motion.div className="bot-panel" initial={{ opacity: 0, y: 18, scale: .96 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 18, scale: .96 }}>
             <div className="bot-panel-head">
               <div className={`pinkbot-avatar state-${botState}`} aria-hidden="true"><span className="pinkbot-eye" /><span className="pinkbot-eye" /><span className="pinkbot-mouth" /></div>
-              <div><strong>PinkBot</strong><span><i /> {apiAvailable ? (mode === "llm" ? "IA conectada" : "Base de conhecimento") : "Modo local de contingência"}</span></div>
+              <div><strong>PinkBot</strong><span><i /> {apiAvailable === null ? "Assistente pronto" : apiAvailable ? (mode === "llm" ? "IA conectada" : "Base de conhecimento") : "Modo local de contingência"}</span></div>
               <button className="icon-button" onClick={reset} aria-label="Reiniciar conversa"><RotateCcw size={16} /></button>
               <button className="icon-button" onClick={() => { setBotState("goodbye"); window.speechSynthesis?.cancel?.(); window.setTimeout(() => setOpen(false), 550); }} aria-label="Fechar PinkBot"><X size={18} /></button>
             </div>
@@ -153,7 +153,7 @@ function PinkBot() {
               <button onClick={() => { setVoiceEnabled((value) => { if (value) window.speechSynthesis?.cancel?.(); return !value; }); }} aria-pressed={voiceEnabled}><Volume2 size={14} /> Voz {voiceEnabled ? "ativada" : "desativada"}</button>
               <span>{mode === "llm" ? "Resposta gerada por IA" : "Resposta baseada em conhecimento"}</span>
             </div>
-            <p className="bot-disclaimer">{apiAvailable ? "A conversa usa a API do portfólio; sem chave configurada, responde pela base local." : "Servidor indisponível: respostas locais de contingência."} O microfone depende do suporte e da permissão do navegador.</p>
+            <p className="bot-disclaimer">{apiAvailable === null ? "Envie uma pergunta para iniciar. O modo utilizado será identificado na resposta." : apiAvailable ? "Conversa processada pela API; sem chave configurada, usa a base de conhecimento." : "Servidor indisponível: respostas locais de contingência."} O microfone depende do suporte e da permissão do navegador.</p>
           </motion.div>
         )}
       </AnimatePresence>

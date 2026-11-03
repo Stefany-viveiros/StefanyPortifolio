@@ -189,7 +189,7 @@ function Hero() {
       <div className="availability"><span /> EM CONSTANTE CONSTRUÇÃO E APRENDIZADO</div>
       <p className="hero-kicker">OLÁ, EU SOU A STEFANY <span>✳</span></p>
       <h1>Ideias ganham<br />vida através de<br /><span className="gradient-text">código & criatividade.</span></h1>
-      <p className="hero-description">Estudante de Engenharia da Computação e ADS, explorando desenvolvimento de software, inteligência artificial e automação para criar soluções que fazem sentido no mundo real.</p>
+      <p className="hero-description">No 8º período de Engenharia da Computação e no 2º período de Análise e Desenvolvimento de Sistemas, exploro desenvolvimento de software, inteligência artificial e automação para criar soluções que fazem sentido no mundo real.</p>
       <div className="hero-actions"><a className="button-primary" href="#projetos">Explorar projetos <ArrowUpRight size={17} /></a><a className="button-ghost" href="#sobre">Conhecer minha jornada <ArrowDown size={16} /></a></div>
       <div className="hero-socials"><a href={profile.links.github} target="_blank" rel="noreferrer"><Github size={17} /> GitHub</a><a href={profile.links.linkedin} target="_blank" rel="noreferrer"><Linkedin size={17} /> LinkedIn</a></div>
     </div>
@@ -247,7 +247,7 @@ function Philosophy() {
 function Experience() {
   return <section className="section-wrap section-block" id="trajetoria"><SectionHeading eyebrow="05 / TRAJETÓRIA" title={<>Experiência que vai<br /><span className="gradient-text">além do código.</span></>} text="Minha vivência profissional também trouxe repertório para observar processos, trabalhar com informação e entender necessidades operacionais." />
     <div className="timeline">{experience.map((item, index) => <article className="timeline-item" key={item.role}><div className="timeline-marker">{String(index + 1).padStart(2, "0")}</div><div><span className="timeline-period">{item.period}</span><h3>{item.role}</h3><h4>{item.company}</h4><p>{item.description}</p></div></article>)}</div>
-    <div className="education-note"><span className="stat-icon"><Sparkles /></span><div><strong>Formação em andamento</strong><p>Engenharia da Computação + Análise e Desenvolvimento de Sistemas</p></div></div>
+    <div className="education-note"><span className="stat-icon"><Sparkles /></span><div><strong>Formação acadêmica</strong><p>Engenharia da Computação — 8º período</p><p>Análise e Desenvolvimento de Sistemas — 2º período</p></div></div>
   </section>;
 }
 
@@ -255,7 +255,7 @@ function RecruiterMode() {
   return <section className="section-wrap section-block recruiter-section" id="recrutadores">
     <SectionHeading eyebrow="06 / RECRUITER MODE" title={<>Uma visão direta<br /><span className="gradient-text">para recrutadores.</span></>} text="Um resumo objetivo da formação, das tecnologias e dos projetos que representam minha trajetória atual." />
     <div className="recruiter-grid">
-      <article className="recruiter-card recruiter-summary"><Briefcase size={22} /><span className="card-index">RESUMO PROFISSIONAL</span><h3>Formação em tecnologia, experiência operacional e iniciativa para construir soluções.</h3><p>Stefany combina estudos em Engenharia da Computação e ADS com vivência em processos, logística e produção. Seus projetos exploram desenvolvimento web, backend, automação e aplicações com IA.</p><a className="project-link" href={profile.links.linkedin} target="_blank" rel="noreferrer">Perfil profissional <ArrowUpRight size={16} /></a></article>
+      <article className="recruiter-card recruiter-summary"><Briefcase size={22} /><span className="card-index">RESUMO PROFISSIONAL</span><h3>Formação em tecnologia, experiência operacional e iniciativa para construir soluções.</h3><p>Stefany está no 8º período de Engenharia da Computação e no 2º período de Análise e Desenvolvimento de Sistemas, além de trazer vivência em processos, logística e produção. Seus projetos exploram desenvolvimento web, backend, automação e aplicações com IA.</p><a className="project-link" href={profile.links.linkedin} target="_blank" rel="noreferrer">Perfil profissional <ArrowUpRight size={16} /></a></article>
       <article className="recruiter-card"><span className="card-index">FORMAÇÃO</span><h3>Em andamento</h3><p>Engenharia da Computação</p><p>Análise e Desenvolvimento de Sistemas</p><span className="card-index">ÁREAS DE INTERESSE</span><div className="skill-tags"><span>Desenvolvimento</span><span>GenAI</span><span>Automação</span><span>Dados</span></div></article>
       <article className="recruiter-card"><span className="card-index">PROJETOS EM DESTAQUE</span><h3>JobFinder AI</h3><p>Automação de busca e organização de oportunidades, leitura de currículo e análise de compatibilidade.</p><a className="project-link" href="https://github.com/Stefany-viveiros/JobFinderAI" target="_blank" rel="noreferrer">Ver projeto <ArrowUpRight size={16} /></a><h3>BS Construtora</h3><p>Fluxo de orçamentos com frontend React, API FastAPI e persistência SQLite.</p><a className="project-link" href="https://github.com/Stefany-viveiros/BS-Construtora" target="_blank" rel="noreferrer">Ver projeto <ArrowUpRight size={16} /></a></article>
     </div>

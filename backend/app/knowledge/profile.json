@@ -1,0 +1,108 @@
+{
+  "profile": {
+    "name": "Stefany Barboza",
+    "education": [
+      "Engenharia da Computação (em andamento)",
+      "Análise e Desenvolvimento de Sistemas (em andamento)"
+    ],
+    "interests": [
+      "desenvolvimento de software",
+      "inteligência artificial",
+      "GenAI",
+      "automação",
+      "dados"
+    ],
+    "links": {
+      "github": "https://github.com/Stefany-viveiros",
+      "linkedin": "https://linkedin.com/in/stefanybarboza-dev"
+    },
+    "email": null
+  },
+  "skills": {
+    "languages": [
+      "Python",
+      "JavaScript",
+      "PHP"
+    ],
+    "frontend": [
+      "React",
+      "HTML5",
+      "CSS3",
+      "Vite"
+    ],
+    "backend": [
+      "FastAPI",
+      "APIs REST"
+    ],
+    "databases": [
+      "SQLite",
+      "PostgreSQL",
+      "SQLAlchemy"
+    ],
+    "tools": [
+      "Git",
+      "GitHub",
+      "VS Code"
+    ],
+    "ai": [
+      "integração com modelos de linguagem em projetos",
+      "engenharia de prompts",
+      "automação"
+    ]
+  },
+  "projects": [
+    {
+      "name": "JobFinder AI",
+      "url": "https://github.com/Stefany-viveiros/JobFinderAI",
+      "description": "Plataforma em evolução para apoiar a busca por oportunidades de estágio e posições júnior, com importação e leitura de currículo, organização de vagas e análise de compatibilidade. Frontend React, backend FastAPI e PostgreSQL; deploy realizado com Render e Neon."
+    },
+    {
+      "name": "NeuroTask",
+      "url": "https://github.com/Stefany-viveiros/neurotask",
+      "description": "Projeto relacionado à organização de tarefas e produtividade. Consulte o repositório para detalhes confirmados."
+    },
+    {
+      "name": "BS Construtora",
+      "url": "https://github.com/Stefany-viveiros/BS-Construtora",
+      "description": "Sistema web com React, Vite, FastAPI, SQLite e SQLAlchemy, incluindo fluxo de solicitação de orçamentos e persistência de dados."
+    },
+    {
+      "name": "Explore Now",
+      "url": "https://github.com/Stefany-viveiros/explore-now",
+      "description": "Projeto web de exploração e descoberta. Consulte o repositório para funcionalidades detalhadas."
+    },
+    {
+      "name": "Cinema Web App",
+      "url": "https://github.com/Stefany-viveiros/cinema-web-app",
+      "description": "Aplicação de cinema com recursos de filmes, seleção de assentos, ingressos e bomboniere."
+    },
+    {
+      "name": "ONG Acolhe+",
+      "url": "https://github.com/Stefany-viveiros/ong-acolhe-plus",
+      "description": "Projeto acadêmico de solução digital para o contexto de uma organização social."
+    },
+    {
+      "name": "SENAI Alunos",
+      "url": "https://github.com/Stefany-viveiros/projeto-senai-alunos",
+      "description": "Projeto acadêmico desenvolvido no contexto de atividades do SENAI."
+    }
+  ],
+  "experience": [
+    {
+      "role": "Cronoanalista",
+      "company": "TransZE",
+      "period": "Dez/2018 a Ago/2019",
+      "description": "Experiência com análise de processos e tempos."
+    },
+    {
+      "role": "Logística e produção",
+      "description": "Vivência com estoque, expedição, acompanhamento de produção, Excel e rotinas relacionadas ao PCP."
+    }
+  ],
+  "professional_goals": [
+    "estágio em tecnologia",
+    "desenvolvimento júnior",
+    "desenvolvimento de software",
+    "IA e automação"
+  ]
+}

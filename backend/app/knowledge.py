@@ -50,11 +50,9 @@ def answer_from_knowledge(question: str) -> str:
             f"• {p['name']}: {p['description']} Repositório: {p['url']}" for p in selected
         )
     if any(word in q for word in ("genai", "gen ai", "inteligência artificial", "inteligencia artificial")):
-        return (
-            "GenAI é a área de inteligência artificial generativa, que cria conteúdo "
-            "como texto ou código a partir de instruções e contexto. No portfólio, "
-            "Stefany apresenta seu interesse em IA e projetos que exploram automação "
-            "e integração com modelos de linguagem."
+        return data.get("concepts", {}).get(
+            "GenAI",
+            "Não encontrei uma explicação desse conceito na base de conhecimento."
         )
     if re.search(r"contratar|contrataria|por que.*contrat", q):
         return (

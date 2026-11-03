@@ -31,3 +31,6 @@
 :root[data-theme="light"] .site-footer{color:#665d6b;border-color:var(--line)}
 :root[data-theme="light"] .theme-toggle{color:#49364e}
 @media(max-width:680px){.header-tools{margin-left:auto}.mobile-menu{margin-left:3px}}
+
+.state-sleeping .pinkbot-eye{height:1.5px;width:8px;border-radius:50%;transform:translateY(2px)}.state-sleeping .pinkbot-mouth{border:0;width:5px;height:5px;border-radius:50%;background:#6c345e}.state-surprised .pinkbot-eye{height:9px;width:7px}.state-surprised .pinkbot-mouth{width:5px;height:6px;border:1.5px solid #6c345e;border-radius:50%}
+.bot-volume{display:flex;align-items:center;gap:5px;color:#938a99;font-size:9px}.bot-volume input{width:55px;accent-color:var(--pink)}

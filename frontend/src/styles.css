@@ -17,3 +17,17 @@
 .recruiter-grid{display:grid;grid-template-columns:1.2fr .8fr .9fr;gap:14px}.recruiter-card{padding:27px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.012))}.recruiter-card>svg{color:var(--pink);margin-bottom:18px}.recruiter-card .card-index{display:block;margin-bottom:15px}.recruiter-card h3{font:600 19px var(--display);line-height:1.35;margin:10px 0}.recruiter-card p{font-size:12px;color:#a49daa;line-height:1.75}.recruiter-summary h3{font-size:24px;max-width:440px}.recruiter-card .skill-tags{margin-top:18px}.recruiter-actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:20px}.recruiter-actions>span{font-size:10px;color:#827b88}
 @media(max-width:850px){.recruiter-grid{grid-template-columns:1fr 1fr}.recruiter-summary{grid-column:span 2}}
 @media(max-width:600px){.recruiter-grid{grid-template-columns:1fr}.recruiter-summary{grid-column:auto}.bot-panel{max-height:calc(100dvh - 105px);display:flex;flex-direction:column}.bot-conversation{min-height:120px}.bot-controls{flex-wrap:wrap}}
+
+.header-tools{display:flex;align-items:center;gap:12px}.theme-toggle{width:35px;height:35px;border:1px solid var(--line);border-radius:9px;display:grid;place-items:center;color:#e9dce9}.theme-toggle:hover{border-color:var(--pink);color:var(--pink)}
+:root[data-theme="light"]{--bg:#f7f3f8;--panel:#fff;--panel2:#f1eaf4;--muted:#625969;--line:rgba(39,24,45,.13);color:#211827;background:#f7f3f8}
+:root[data-theme="light"] body{background:radial-gradient(ellipse at 78% 12%,rgba(155,123,255,.12),transparent 32%),var(--bg);color:#211827}
+:root[data-theme="light"] .site-header{border-color:var(--line)}
+:root[data-theme="light"] .nav-links>a,:root[data-theme="light"] .hero-description,:root[data-theme="light"] .section-heading>p,:root[data-theme="light"] .about-main p,:root[data-theme="light"] .mini-stat p,:root[data-theme="light"] .project-content>p,:root[data-theme="light"] .timeline-item p,:root[data-theme="light"] .contact-section>p{color:#655b6c}
+:root[data-theme="light"] .brand,:root[data-theme="light"] .hero h1,:root[data-theme="light"] .section-heading h2,:root[data-theme="light"] .contact-section h2,:root[data-theme="light"] .about-main h3,:root[data-theme="light"] .mini-stat strong,:root[data-theme="light"] .skill-card h3,:root[data-theme="light"] .project-content h3,:root[data-theme="light"] .principle h3,:root[data-theme="light"] .timeline-item h3{color:#211827}
+:root[data-theme="light"] .about-card,:root[data-theme="light"] .mini-stat,:root[data-theme="light"] .skill-card,:root[data-theme="light"] .project-card,:root[data-theme="light"] .recruiter-card{background:linear-gradient(145deg,#fff,#f7f0f8);border-color:rgba(39,24,45,.12)}
+:root[data-theme="light"] .skill-tags span,:root[data-theme="light"] .project-stack span{background:#eee7f1;color:#514658}
+:root[data-theme="light"] .principle,:root[data-theme="light"] .principles-list{border-color:var(--line)}
+:root[data-theme="light"] .education-note{background:#fff;border-color:var(--line)}
+:root[data-theme="light"] .site-footer{color:#665d6b;border-color:var(--line)}
+:root[data-theme="light"] .theme-toggle{color:#49364e}
+@media(max-width:680px){.header-tools{margin-left:auto}.mobile-menu{margin-left:3px}}

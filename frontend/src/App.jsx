@@ -197,7 +197,7 @@ function Hero() {
       <div className="showcase-orb showcase-orb-one" /><div className="showcase-orb showcase-orb-two" />
       <div className="showcase-topline"><span><i /> PORTFÓLIO EM EVOLUÇÃO</span><span>STF / 2026</span></div>
       <div className="showcase-code-card">
-        <div className="showcase-window-bar"><span><i /><i /><i /></span><small>stefany.dev / workspace</small><Code2 size={15} /></div>
+        <div className="showcase-window-bar"><span><i /><i /><i /></span><small>stefany.dev / ambiente de desenvolvimento</small><Code2 size={15} /></div>
         <div className="showcase-code">
           <p><span>01</span><b>const</b> foco = [</p>
           <p><span>02</span><em>"desenvolvimento full stack"</em>,</p>
@@ -215,7 +215,7 @@ function Hero() {
       <div className="showcase-tags"><span>REACT</span><span>PYTHON</span><span>FASTAPI</span><span>GENAI</span></div>
       <div className="showcase-index">01 <span>—</span> 07 <i /> EXPLORAR</div>
     </aside>
-    <div className="hero-scroll">SCROLL PARA EXPLORAR <span /></div>
+    <div className="hero-scroll">ROLE A PÁGINA PARA EXPLORAR <span /></div>
   </section>;
 }
 function About() {

@@ -42,3 +42,31 @@ def test_genai_question_has_a_grounded_definition(monkeypatch):
     response = client.post("/api/chat", json={"message": "O que é GenAI?"})
     assert response.status_code == 200
     assert "inteligência artificial generativa" in response.json()["reply"]
+
+
+
+def test_education_question_returns_academic_background(monkeypatch):
+    monkeypatch.delenv("OPENAI_API_KEY", raising=False)
+    response = client.post("/api/chat", json={"message": "Qual é a formação acadêmica da Stefany?"})
+    assert response.status_code == 200
+    reply = response.json()["reply"]
+    assert "Engenharia da Computação" in reply
+    assert "Análise e Desenvolvimento de Sistemas" in reply
+
+
+def test_experience_question_returns_recorded_employers(monkeypatch):
+    monkeypatch.delenv("OPENAI_API_KEY", raising=False)
+    response = client.post("/api/chat", json={"message": "Quais experiências profissionais ela possui?"})
+    assert response.status_code == 200
+    reply = response.json()["reply"]
+    assert "TransZE" in reply
+    assert "Medical Burs" in reply
+
+
+def test_technology_question_does_not_claim_formal_proficiency(monkeypatch):
+    monkeypatch.delenv("OPENAI_API_KEY", raising=False)
+    response = client.post("/api/chat", json={"message": "Qual a experiência dela com Python?"})
+    assert response.status_code == 200
+    reply = response.json()["reply"]
+    assert "Python" in reply
+    assert "nível formal de proficiência" in reply

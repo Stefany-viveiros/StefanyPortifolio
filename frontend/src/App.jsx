@@ -196,11 +196,10 @@ function Hero() {
     <div className="hero-art hero-character-stage" aria-label="PinkBot, assistente virtual do portfólio">
       <div className="hero-orbit hero-orbit-a" /><div className="hero-orbit hero-orbit-b" />
       <div className="hero-grid-glow" />
-      <div className="hero-character-card">
-        <span className="character-card-label"><i /> PERSONAL AI COMPANION</span>
-        <PinkBotCharacter className="hero-pinkbot" state="idle" />
-        <div className="character-card-foot"><span>PK-01</span><strong>PinkBot <em>online</em></strong><span>✦</span></div>
-      </div>
+      <div className="hero-character-aura" />
+      <div className="hero-character-label"><span className="pulse-dot" /> YOUR AI COMPANION <b>PK—01</b></div>
+      <PinkBotCharacter className="hero-pinkbot hero-pinkbot-free" state="idle" />
+      <div className="hero-character-name"><strong>PinkBot</strong><span>curiosa por natureza. feita para explorar.</span></div>
       <span className="float-tag tag-code"><Code2 size={15} /> BUILDING IDEAS</span>
       <span className="float-tag tag-ai"><Sparkles size={15} /> EXPLORING AI</span>
       <span className="float-tag tag-react">{"{ }"} REACT / PYTHON</span>

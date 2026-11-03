@@ -37,3 +37,6 @@
 
 .project-details{width:100%;margin:0 0 15px;border-top:1px solid var(--line);padding-top:10px}.project-details summary{cursor:pointer;color:#ffabd1;font-size:10px;list-style-position:inside}.project-details p{font-size:10px!important;line-height:1.6;margin:8px 0!important}.project-details strong{color:#e9d9e6}
 :root[data-theme="light"] .project-details strong{color:#49364e}
+
+.skill-note{min-height:32px;margin: -7px 0 13px;color:#918997;font-size:10px;line-height:1.55}.button-ghost{background:transparent;border:1px solid var(--line)}
+:root[data-theme="light"] .skill-note{color:#6f6575}
